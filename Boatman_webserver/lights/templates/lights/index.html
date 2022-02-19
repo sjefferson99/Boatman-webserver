@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Boatman lights controller</title>
+  </head>
+  <body>
+    <h1>Boatman light controller</h1>
+
+    <form action="{% url 'lights:bmserial' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>Lights</h1></legend>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% for light in light_list %}
+                <input type="radio" name="light" id="light{{ forloop.counter }}" value="{{ light.id }}">
+                <label for="light{{ forloop.counter }}">{{ light.name }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Turn on">
+        </form>
+
+    <h2>Available lights</h2>
+    {% if light_list %}
+        <ul>
+        {% for light in light_list %}
+            <li><a href="{% url 'lights:light_detail' light.id %}">{{ light.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No lights are configured.</p>
+    {% endif %}
+
+    <h2>Available groups</h2>
+    {% if group_list %}
+    <ul>
+    {% for group in group_list %}
+        <li><a href="{% url 'lights:group_detail' group.id %}">{{ group.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No groups are configured.</p>
+{% endif %}
+
+  </body>
+</html>
