@@ -13,8 +13,8 @@ Adjust com port definition in views.py to match your host config
 
 Configure the admin console with a superuser: python manage.py createsuperuser
 
-Browse to http://192.168.68.122:8000/admin/ to configure some lights and groups
+Browse to http://<ip>:8000/admin/ to configure some lights and groups
 As yet the group config needs to match that hardcoded in the pico-lights code
 Light numbers should match the lights 0-15 available on the lights-pico module
 
-Browse to http://192.168.68.122:8000/lights/ to run the web interface.
+Browse to http://<ip>:8000/lights/ to run the web interface.
