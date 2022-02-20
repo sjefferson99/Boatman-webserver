@@ -9,6 +9,7 @@
 
     <form action="{% url 'lights:bmcomms' %}" method="post">
         {% csrf_token %}
+        <input type="hidden" id="lightorgroup" name="lightorgroup" value="light">
         <fieldset>
             <legend><h1>Light control</h1></legend>
             <fieldset>
@@ -51,7 +52,56 @@
                 <input type="checkbox" id="reset" name="reset">
                 <label for="reset">Reset other lights?</label><br>
             </fieldset>
-            <input type="submit" value="Turn on">
+            <input type="submit" value="Apply">
+        </fieldset>
+    </form>
+
+    <form action="{% url 'lights:bmcomms' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" id="lightorgroup" name="lightorgroup" value="group">
+        <fieldset>
+            <legend><h1>Group control</h1></legend>
+            <fieldset>
+                <legend><h2>Select group</h2></legend>
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} {# Error feedback from Django tutorial, not currently used #}
+                {% for group in group_list %}
+                    <input type="radio" name="group" id="group{{ forloop.counter }}" value="{{ group.id }}">
+                    <label for="group{{ forloop.counter }}">{{ group.name }}</label><br>
+                {% endfor %}
+            </fieldset>
+
+            <fieldset>
+                <legend><h2>Select brightness</h2></legend>
+                <input type="radio" name="duty" id="duty0" value="0">
+                <label for="duty0">0 (Off)</label><br>
+                <input type="radio" name="duty" id="duty0" value="1">
+                <label for="duty0">1</label><br>
+                <input type="radio" name="duty" id="duty0" value="2">
+                <label for="duty0">2</label><br>
+                <input type="radio" name="duty" id="duty0" value="3">
+                <label for="duty0">3</label><br>
+                <input type="radio" name="duty" id="duty0" value="4">
+                <label for="duty0">4</label><br>
+                <input type="radio" name="duty" id="duty0" value="5">
+                <label for="duty0">5</label><br>
+                <input type="radio" name="duty" id="duty0" value="6">
+                <label for="duty0">6</label><br>
+                <input type="radio" name="duty" id="duty0" value="7">
+                <label for="duty0">7</label><br>
+                <input type="radio" name="duty" id="duty0" value="8">
+                <label for="duty0">8</label><br>
+                <input type="radio" name="duty" id="duty0" value="9">
+                <label for="duty0">9</label><br>
+                <input type="radio" name="duty" id="duty0" value="10">
+                <label for="duty0">10 (Fully on)</label><br>
+            </fieldset>
+
+            <fieldset>
+                <legend><h2>Reset or add to config</h2></legend>
+                <input type="checkbox" id="reset" name="reset">
+                <label for="reset">Reset other lights?</label><br>
+            </fieldset>
+            <input type="submit" value="Apply">
         </fieldset>
     </form>
 
