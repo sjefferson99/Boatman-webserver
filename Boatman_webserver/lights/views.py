@@ -22,7 +22,7 @@ def group_detail(request, id):
     group = get_object_or_404(Group, pk=id)
     return render(request, 'lights/group_detail.html', {'group': group})
 
-def bmserial(request):
+def bmcomms(request):
     light = get_object_or_404(Light, pk=request.POST['light'])
 
     ser = serial.Serial(
