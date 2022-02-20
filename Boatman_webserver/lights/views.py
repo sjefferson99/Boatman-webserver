@@ -57,4 +57,9 @@ def bmcomms(request):
 
     ser.write(jsondata.encode('utf-8'))
 
-    return render(request, 'lights/bmcomms.html', {'light': light, 'reset': reset, 'duty': request.POST['duty']})
+    if groupflag:
+        lightobject = group
+    else:
+        lightobject = light
+
+    return render(request, 'lights/bmcomms.html', {'lightobject': lightobject, 'reset': reset, 'duty': request.POST['duty']})
