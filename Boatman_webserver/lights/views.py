@@ -53,4 +53,4 @@ def bmcomms(request):
 
     ser.write(jsondata.encode('utf-8'))
 
-    return render(request, 'lights/bmcomms.html', {'light': light, 'reset': reset, 'duty': duty})
+    return render(request, 'lights/bmcomms.html', {'light': light, 'reset': reset, 'duty': request.POST['duty']})
