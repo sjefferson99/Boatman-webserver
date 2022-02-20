@@ -23,7 +23,16 @@ def group_detail(request, id):
     return render(request, 'lights/group_detail.html', {'group': group})
 
 def bmcomms(request):
-    light = get_object_or_404(Light, pk=request.POST['light'])
+    group = False
+    if request.POST['lightorgroup'] == "group":
+        group = True
+    
+    if group:
+        group = get_object_or_404(Group, pk=request.POST['group'])
+        number = group.number
+    else:
+        light = get_object_or_404(Light, pk=request.POST['light'])
+        number = light.number
 
     ser = serial.Serial(
     port='/dev/ttyS0',
@@ -34,10 +43,6 @@ def bmcomms(request):
     timeout=1
     )
 
-    group = False
-    if request.POST['lightorgroup'] == "group":
-        group = True
-    
     reset = False
     if 'reset' in request.POST:
         reset = True
@@ -47,8 +52,7 @@ def bmcomms(request):
     if duty == 250:
         duty = 255
 
-    light_id = light.number
-    data = {"Light control":{"id": light_id, "duty": duty, "reset": reset, "group": group}}
+    data = {"Light control":{"id": number, "duty": duty, "reset": reset, "group": group}}
     jsondata = json.dumps(data)
 
     ser.write(jsondata.encode('utf-8'))
