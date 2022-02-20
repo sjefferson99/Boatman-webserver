@@ -26,7 +26,7 @@ with open('Boatman_webserver/secret_key.txt') as f:
 DEBUG = True
 
 #Adjust for your dev web server IP
-ALLOWED_HOSTS = ['192.168.68.122']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.68.122']
 
 
 # Application definition
