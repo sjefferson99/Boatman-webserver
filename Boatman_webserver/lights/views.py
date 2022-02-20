@@ -40,6 +40,8 @@ def bmcomms(request):
 
     duty = int(request.POST['duty'])
     duty = duty * 25
+    if duty == 250:
+        duty = 255
 
     light_id = light.number
     data = {"Light control":{"id": light_id, "duty": duty, "reset": reset, "group": False}}
