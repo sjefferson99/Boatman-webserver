@@ -12,8 +12,14 @@
     </P
 
     <p>
-    <b><em>{{light}} has been turned on.</em></b>
+    <b><em>{{light}} has been turned to brightness {{duty}}.</em></b>
     </p>
+
+    <p>
+      <b><em>Other lights were reset: {{reset}}</em></b>
+    </p>
+
+    <a href="{% url 'lights:index' %}">Back to light control</a>
 
   </body>
 </html>
