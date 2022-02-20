@@ -40,4 +40,4 @@ def bmserial(request):
 
     ser.write(jsondata.encode('utf-8'))
 
-    return render(request, 'lights/bmserial.html', {'light': light})
+    return render(request, 'lights/bmcomms.html', {'light': light})

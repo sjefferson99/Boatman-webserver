@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('light/<int:id>/', views.light_detail, name='light_detail'),
     path('group/<int:id>/', views.group_detail, name='group_detail'),
-    path('bmserial/', views.bmserial, name='bmserial'),
+    path('bmcomms/', views.bmcomms, name='bmcomms'),
 ]
