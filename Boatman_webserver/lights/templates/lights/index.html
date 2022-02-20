@@ -11,11 +11,19 @@
         {% csrf_token %}
         <fieldset>
             <legend><h1>Lights</h1></legend>
-            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} {# Error feedback from Django tutorial, not currently used #}
             {% for light in light_list %}
                 <input type="radio" name="light" id="light{{ forloop.counter }}" value="{{ light.id }}">
                 <label for="light{{ forloop.counter }}">{{ light.name }}</label><br>
             {% endfor %}
+            
+            <input type="checkbox" id="reset" name="reset">
+            <label for="reset">Reset other lights?</label><br>
+            
+            <input type="radio" name="duty" id="duty0" value="0">
+            <label for="duty0">Duty 0</label><br>
+            <input type="radio" name="duty" id="duty0" value="10">
+            <label for="duty0">Duty 10</label><br>
         </fieldset>
         <input type="submit" value="Turn on">
         </form>

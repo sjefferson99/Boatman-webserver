@@ -34,8 +34,15 @@ def bmcomms(request):
     timeout=1
     )
 
+    reset = False
+    if request.POST['reset']:
+        reset = True
+
+    duty = request.POST['duty']
+    duty = duty * 25
+
     light_id = light.number
-    data = {"Light control":{"id": light_id, "duty": 255, "reset": True, "group": False}}
+    data = {"Light control":{"id": light_id, "duty": duty, "reset": reset, "group": False}}
     jsondata = json.dumps(data)
 
     ser.write(jsondata.encode('utf-8'))
