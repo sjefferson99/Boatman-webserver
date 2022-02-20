@@ -35,10 +35,10 @@ def bmcomms(request):
     )
 
     reset = False
-    if request.POST['reset']:
+    if 'reset' in request.POST:
         reset = True
 
-    duty = request.POST['duty']
+    duty = int(request.POST['duty'])
     duty = duty * 25
 
     light_id = light.number
